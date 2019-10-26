@@ -12,8 +12,6 @@ public class StringParser {
 
     private int severity;
     private Scanner s;
-    // Used to identify the most commonly derogatory or negative words
-    private HashMap<String, Integer> frequencyMap;
     private FileReader fr;
     private HashMap<String, Keyword> keywords;
 
@@ -26,8 +24,10 @@ public class StringParser {
         } catch (FileNotFoundException f) {
             System.out.println("File not found: " + in);
         }
-        frequencyMap = new HashMap<>();
-        keywords = new HashMap<>();
+        ArrayList<Keyword> kw = Keyword.createKeywordList(new File(".\database\database.json"));
+        for (Keyword k: kw) {
+            keywords.put(k.getWord(), k);
+        }
     }
 
     /**
