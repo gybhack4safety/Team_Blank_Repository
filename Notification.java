@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
  */
 public class Notification {
 
-    private ArrayList<String> phrases;
+    private ArrayList<Keyword> phrases;
     private String firstTimeStamp;
     private String lastTimeStamp;
     private boolean hasDiscrimination;
@@ -24,7 +25,7 @@ public class Notification {
      * @param firstTimeStamp timestamp of the first phrase
      * @param lastTimeStamp timestamp of the last phrase
      */
-    public Notification(ArrayList<String> phrases, String firstTimeStamp, String lastTimeStamp) {
+    public Notification(ArrayList<Keyword> phrases, String firstTimeStamp, String lastTimeStamp) {
         this.phrases = phrases;
         this.firstTimeStamp = firstTimeStamp;
         this.lastTimeStamp = lastTimeStamp;
@@ -35,9 +36,8 @@ public class Notification {
 
     /**
      * Asks users if they find the outputted phrases offensive
-     * @return whether user finds this phrase offensive or not
      */
-    public boolean doesUserFindPhraseOffensive() {
+    public void doesUserFindPhraseOffensive() {
         listPhrases();
         System.out.println("These messages were from " + firstTimeStamp + " to " + lastTimeStamp);
         String isOffensive;
@@ -64,7 +64,7 @@ public class Notification {
         if (hasThreat) potentialThreat += "threat ";
         if (hasDiscrimination) potentialThreat += "harassment ";
         System.out.println(potentialThreat);
-        for (String phrase: sortPhrases())
+        for (Keyword phrase: sortPhrases())
             System.out.println(phrase);
     }
 
@@ -72,13 +72,13 @@ public class Notification {
      * Sorts the given phrases based on severity
      * @return an ArrayList with sorted phrases
      */
-    public ArrayList<String> sortPhrases() {
-        ArrayList<String> temp = phrases;
-        ArrayList<String> sortedPhrases = new ArrayList<>();
-        for (String phrase: temp) {
+    public ArrayList<Keyword> sortPhrases() {
+        ArrayList<Keyword> temp = phrases;
+        ArrayList<Keyword> sortedPhrases = new ArrayList<>();
+        for (Keyword phrase: temp) {
             int highestSeverity = 0;
-            String highestSeverePhrase = "";
-            for (String phrase2: temp) {
+            Keyword highestSeverePhrase = Keyword.createEntry(null, Classification.THREAT);
+            for (Keyword phrase2: temp) {
                 if (phrase2.getSeverity() > highestSeverity) {
                     highestSeverity = phrase2.getSeverity();
                     highestSeverePhrase = phrase2;
@@ -94,16 +94,16 @@ public class Notification {
      * Determines if there are phrases containing traces of discrimination, threats, or harassment
      */
     public void determineExistingCategories() {
-        for (String phrase: sortPhrases()) {
+        for (Keyword phrase: sortPhrases()) {
             if (hasDiscrimination && hasThreat && hasHarassment) break;
-            if (phrase.getClassfication().equalsIgnoreCase("discrimination")) {
+            if (phrase.getClassification() == Classification.DISCRIMINATION) {
                 hasDiscrimination = true;
             }
-            else if (phrase.getClassfication().equalsIgnoreCase("threat")) {
+            else if (phrase.getClassification() == Classification.THREAT) {
                 hasThreat = true;
             }
-            else (phrase.getClassfication().equalsIgnoreCase("harassment"))
-            hasHarassment = true;
+            else if (phrase.getClassification() == Classification.HARASSMENT)
+                hasHarassment = true;
         }
     }
 
@@ -121,8 +121,10 @@ public class Notification {
             keyword = input.next();
             harmlessWords.add(keyword);
         } while (!keyword.equalsIgnoreCase("Quit application"));
-        for (String harmlessWord: harmlessWords)
-            harmlessWord.setSeverity(0);
+        for (String harmlessWord: harmlessWords) {
+            Keyword kw = Keyword.createEntry(harmlessWord, Classification.HARASSMENT);
+            kw.setSeverity(0);
+        }
     }
 
     /**
