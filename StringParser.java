@@ -14,7 +14,8 @@ public class StringParser {
     private Scanner s;
     // Used to identify the most commonly derogatory or negative words
     private HashMap<String, Integer> frequencyMap;
-    FileReader fr;
+    private FileReader fr;
+    private HashMap<String, Keyword> keywords;
 
     // Initializes the parser and converts the word to alphabetical characters
     public StringParser(String in) {
@@ -26,6 +27,7 @@ public class StringParser {
             System.out.println("File not found: " + in);
         }
         frequencyMap = new HashMap<>();
+        keywords = new HashMap<>();
     }
 
     /**
@@ -55,9 +57,10 @@ public class StringParser {
                 word = sentence.substring(curr, index);
                 curr = index + 1;
             }
-            /* Create JSON request to retrieve severity from JSON Object */
-            levSeverity += 0; /* --REPLACE-- JSON object severity */
-            frequencyMap.put(word, 0/* Letter frequency */);
+            if (keywords.containsKey(word)) {
+                levSeverity += keywords.get(word).getSeverity();
+            }
+
             i++;
         }
         // Increment the overall severity by the calculated sentence severity
@@ -80,8 +83,20 @@ public class StringParser {
      */
     public boolean adminAddKeyWord(String word) {
         /* --Add the word into the JSON file-- */
-        /* --Return value of the success/failure of addition-- */
-        return false;
+        Scanner s2 = new Scanner(System.in);
+        System.out.println("Please enter 1: Threat, 2: Discrimination, 3: Harassment");
+        int in = Integer.parseInt(s2.next());
+        if (in == 1) {
+            keywords.put(word, Keyword.createEntry(word, Classification.THREAT));
+        } else if (in == 2) {
+            keywords.put(word, Keyword.createEntry(word, Classification.DISCRIMINATION));
+        } else if (in == 3) {
+            keywords.put(word, Keyword.createEntry(word, Classification.HARASSMENT));
+        } else {
+            System.out.println("You entered an invalid entry");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -90,16 +105,12 @@ public class StringParser {
      * @return Boolean to determine if the word was removed (word doesn't exist in the JSON file already)
      */
     public boolean adminRemoveKeyWord(String word) {
-        /* --Create a request for a word within the JSON file-- */
         /* If the request returns null return false, else return true (word was removed) */
+        if (keywords.containsKey(word)) {
+            keywords.remove(word);
+            return true;
+        }
         return false;
-    }
-
-    /**
-     * Create a word that goes into the JSON file that the user has recommended, incrementing the occurrences stored in JSON object
-     */
-    public void userRecommendKeyWord(String word) {
-        /* --Add the word to a list stored within the JSON file-- */
     }
 
     /**
@@ -107,13 +118,14 @@ public class StringParser {
      */
     public boolean userAddKeyWord(String word) {
         /* --Add the word to a list stored within the JSON file-- */
+
+
         /* --Return value of the success/failure of addition-- */
         return false;
     }
 
-
     public static void main(String[] args) {
-        StringParser sp = new StringParser("tessst.txt");
+        StringParser sp = new StringParser("test.txt");
         sp.parseBody();
     }
 }
