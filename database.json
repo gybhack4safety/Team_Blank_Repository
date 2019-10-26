@@ -2,96 +2,96 @@
   {
     "classification": "HARASSMENT",
     "offphrase": "bitch",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "fuck",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "ugly",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "THREAT",
     "offphrase": "kill",
-    "severity": 
+    "severity": 4
   },
   {
     "classification": "THREAT",
     "offphrase": "die",
-    "severity": 
+    "severity": 4
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "pussy",
-    "severity": 
+    "severity": 1
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "slut",
-    "severity": 
+    "severity": 5
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "fat",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "DISCRIMINATION",
     "offphrase": "nigger",
-    "severity": 
+    "severity": 4
   },
   {
     "classification": "THREAT",
     "offphrase": "shut up",
-    "severity": 
+    "severity": 4
   },
   {
     "classification": "DISCRIMINATION",
     "offphrase": "gay",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "DISCRIMINATION",
     "offphrase": "hoe",
-    "severity": 
+    "severity": 5
   },
   {
-    "classification": "fag",
-    "offphrase": "DISCRIMINATION",
-    "severity": 
+    "classification": "DISCRIMINATION",
+    "offphrase": "fag",
+    "severity": 2
   },
   {
     "classification": "THREAT",
     "offphrase": "shit",
-    "severity": 
+    "severity": 1
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "dick",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "DISCRIMINATION",
     "offphrase": "thot",
-    "severity": 
+    "severity": 5
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "douche",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "loser",
-    "severity": 
+    "severity": 2
   },
   {
     "classification": "HARASSMENT",
     "offphrase": "nasty",
-    "severity": 
+    "severity": 1
   }
 ]

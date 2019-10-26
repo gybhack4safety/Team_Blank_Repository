@@ -19,15 +19,18 @@ public class StringParser {
     public StringParser(String in) {
         File fr = new File(in);
         severity = 0;
+        keywords = new HashMap<>();
         try {
             s = new Scanner(fr);
         } catch (FileNotFoundException f) {
             System.out.println("File not found: " + in);
             System.exit(1);
         }
-        ArrayList<Keyword> kw = Keyword.createKeywordList(new File("\\database\\database.json"));
+        ArrayList<Keyword> kw = Keyword.createKeywordList(new File("database.json"));
+        System.out.println(new File("database.json").isFile());
         for (Keyword k: kw) {
             keywords.put(k.getWord(), k);
+            System.out.println(k.getWord());
         }
     }
 
