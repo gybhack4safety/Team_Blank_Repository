@@ -14,6 +14,7 @@ public class StringParser {
     private Scanner s;
     private FileReader fr;
     private HashMap<String, Keyword> keywords;
+    private ArrayList<Keyword> kw;
 
     // Initializes the parser and converts the word to alphabetical characters
     public StringParser(String in) {
@@ -26,11 +27,9 @@ public class StringParser {
             System.out.println("File not found: " + in);
             System.exit(1);
         }
-        ArrayList<Keyword> kw = Keyword.createKeywordList(new File("database.json"));
-        System.out.println(new File("database.json").isFile());
+        kw = Keyword.createKeywordList(new File("database.json"));
         for (Keyword k: kw) {
             keywords.put(k.getWord(), k);
-            System.out.println(k.getWord());
         }
     }
 
@@ -63,6 +62,7 @@ public class StringParser {
             }
             if (keywords.containsKey(word)) {
                 levSeverity += keywords.get(word).getSeverity();
+                System.out.println(word);
             }
 
             i++;
@@ -75,6 +75,7 @@ public class StringParser {
      * Runs parseLine until the file has no more lines
      */
     public void parseBody() {
+        System.out.println("Bad words:\n");
         while (s.hasNext()) {
             parseLine();
         }
@@ -92,10 +93,13 @@ public class StringParser {
         int in = Integer.parseInt(s2.next());
         if (in == 1) {
             keywords.put(word, Keyword.createEntry(word, Classification.THREAT));
+            kw.add(Keyword.createEntry(word, Classification.THREAT));
         } else if (in == 2) {
             keywords.put(word, Keyword.createEntry(word, Classification.DISCRIMINATION));
+            kw.add(Keyword.createEntry(word, Classification.DISCRIMINATION));
         } else if (in == 3) {
             keywords.put(word, Keyword.createEntry(word, Classification.HARASSMENT));
+            kw.add(Keyword.createEntry(word, Classification.HARASSMENT));
         } else {
             System.out.println("You entered an invalid entry");
             return false;
@@ -120,5 +124,20 @@ public class StringParser {
     public static void main(String[] args) {
         StringParser sp = new StringParser("test.txt");
         sp.parseBody();
+        System.out.println("Here are some useful links to prevent discrimination: ");
+        System.out.println("https://www.fordfoundation.org/the-latest/news/a-new-hotline-for-anonymous-harassment-and-discrimination-complaints/\n" +
+                "https://www.sterlingattorneys.com/blog/2017/08/first-steps-to-take-if-you-are-being-discriminated-against.shtml\n" +
+                "https://www.chwilliamslaw.com/what-are-signs-that-i-may-be-being-discriminated-against-at-work/");
+        System.out.println("");
+        System.out.println("Here are some useful links to prevent threats: ");
+        System.out.println("https://www.runawayhelpline.org.uk/stages-of-running/im-being-hurt-abused-or-threatened/\n" +
+                "https://blogs.findlaw.com/law_and_life/2017/02/what-to-do-if-someone-threatens-you.html");
+        System.out.println("");
+
+        System.out.println("Here are some useful links to prevent harassment: ");
+        System.out.println("https://www.thehotline.org/2016/04/21/reporting-to-police-options-tips-for-being-prepared/\n" +
+                "http://www.plea.org/legal_resources/?a=303\n" +
+                "https://www.beliefnet.com/wellness/galleries/7-ways-to-deal-with-harassment-of-any-kind.aspx");
+        System.out.println("");
     }
 }
