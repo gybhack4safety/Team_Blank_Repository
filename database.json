@@ -1,0 +1,97 @@
+[
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "bitch",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "fuck",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "ugly",
+    "severity": 
+  },
+  {
+    "classification": "THREAT",
+    "offphrase": "kill",
+    "severity": 
+  },
+  {
+    "classification": "THREAT",
+    "offphrase": "die",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "pussy",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "slut",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "fat",
+    "severity": 
+  },
+  {
+    "classification": "DISCRIMINATION",
+    "offphrase": "nigger",
+    "severity": 
+  },
+  {
+    "classification": "THREAT",
+    "offphrase": "shut up",
+    "severity": 
+  },
+  {
+    "classification": "DISCRIMINATION",
+    "offphrase": "gay",
+    "severity": 
+  },
+  {
+    "classification": "DISCRIMINATION",
+    "offphrase": "hoe",
+    "severity": 
+  },
+  {
+    "classification": "fag",
+    "offphrase": "DISCRIMINATION",
+    "severity": 
+  },
+  {
+    "classification": "THREAT",
+    "offphrase": "shit",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "dick",
+    "severity": 
+  },
+  {
+    "classification": "DISCRIMINATION",
+    "offphrase": "thot",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "douche",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "loser",
+    "severity": 
+  },
+  {
+    "classification": "HARASSMENT",
+    "offphrase": "nasty",
+    "severity": 
+  }
+]
