@@ -33,6 +33,10 @@ public class Keyword {
 		return classification;
 	}
 	
+	public int getSeverity() {
+		return severity;
+	}
+	
 	public void setClassification(Classification s) {
 		classification = s;
 	}
@@ -41,7 +45,7 @@ public class Keyword {
 		severity = s;
 	}
 	
-	public Keyword createEntry(String word, Classification c) {
+	public static Keyword createEntry(String word, Classification c) {
 		Keyword kw =  new Keyword(word);
 		kw.setClassification(c);
 		kw.setSeverity(1);
@@ -49,10 +53,6 @@ public class Keyword {
 	}
 
 	public static ArrayList<Keyword> createKeywordList(File f){
-		
-		if(!f.getParentFile().exists())
-			f.mkdirs();
-		
 		if(f.exists()) {
 			try (BufferedReader br = new BufferedReader(new FileReader(f));) {
 				GsonBuilder builder = new GsonBuilder();
@@ -75,7 +75,6 @@ public class Keyword {
 	    Gson gson = builder.create();  
 	    
 	    if(!f.exists()) {
-	    	f.mkdirs();
 	    	try {
 				f.createNewFile();
 			} catch (IOException e) { e.printStackTrace(); }
@@ -93,12 +92,16 @@ public class Keyword {
 	
 	public static void main(String args[]) {
 		
-		File f = new File("./database/database.json");
+		File f = new File("C:\\Users\\Matthew\\eclipse-workspace\\Hackathon\\database.json");
 		ArrayList<Keyword> list = createKeywordList(f);
+		
+		for(int i = 0; i < 10; i++) {
+			list.add(Keyword.createEntry("Dummy" + i , Classification.BULLY));
+		}
 		
 		for(Keyword kw: list) {
 			System.out.println(kw.getWord());
-			kw.setSeverity(1000);
+			kw.setSeverity(kw.getSeverity() + 1000);
 		}
 		
 		saveKeywordList(f, list);
