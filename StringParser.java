@@ -113,17 +113,6 @@ public class StringParser {
         return false;
     }
 
-    /**
-     * Receive notification from notification class to add to the permanent list of keywords
-     */
-    public boolean userAddKeyWord(String word) {
-        /* --Add the word to a list stored within the JSON file-- */
-
-
-        /* --Return value of the success/failure of addition-- */
-        return false;
-    }
-
     public static void main(String[] args) {
         StringParser sp = new StringParser("test.txt");
         sp.parseBody();
