@@ -115,15 +115,21 @@ public class Notification {
         System.out.println("Which of the words do you find offensive? Please enter them one by one. Enter in " +
                 "\"Quit application\" to quit.");
         ArrayList<String> harmlessWords = new ArrayList<>();
-        String keyword = "";
+        String toRemove = "";
         do {
             Scanner input = new Scanner(System.in);
-            keyword = input.next();
-            harmlessWords.add(keyword);
-        } while (!keyword.equalsIgnoreCase("Quit application"));
+            toRemove = input.next();
+            harmlessWords.add(toRemove);
+        } while (!toRemove.equalsIgnoreCase("Quit application"));
         for (String harmlessWord: harmlessWords) {
-            Keyword kw = Keyword.createEntry(harmlessWord, Classification.HARASSMENT);
-            kw.setSeverity(0);
+            ArrayList<Keyword> temp = phrases;
+            for (Keyword phrase: temp)
+            {
+                if(phrase.getWord() == harmlessWord.toLowerCase())
+                {
+                    phrase.setSeverity(0);
+                }
+            }
         }
     }
 
