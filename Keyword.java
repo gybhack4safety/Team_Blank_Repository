@@ -76,6 +76,7 @@ public class Keyword {
 	    
 	    if(!f.exists()) {
 	    	try {
+	    		f.getParentFile().mkdir();
 				f.createNewFile();
 			} catch (IOException e) { e.printStackTrace(); }
 	    }
@@ -89,21 +90,4 @@ public class Keyword {
 	private Classification classification;
 	private String offphrase;
 	private int severity;
-	
-	public static void main(String args[]) {
-		
-		File f = new File("C:\\Users\\Matthew\\eclipse-workspace\\Hackathon\\database.json");
-		ArrayList<Keyword> list = createKeywordList(f);
-		
-		for(int i = 0; i < 10; i++) {
-			list.add(Keyword.createEntry("Dummy" + i , Classification.BULLY));
-		}
-		
-		for(Keyword kw: list) {
-			System.out.println(kw.getWord());
-			kw.setSeverity(kw.getSeverity() + 1000);
-		}
-		
-		saveKeywordList(f, list);
-	}
 }
