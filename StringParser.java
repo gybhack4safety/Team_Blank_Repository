@@ -24,7 +24,7 @@ public class StringParser {
         } catch (FileNotFoundException f) {
             System.out.println("File not found: " + in);
         }
-        ArrayList<Keyword> kw = Keyword.createKeywordList(new File(".\database\database.json"));
+        ArrayList<Keyword> kw = Keyword.createKeywordList(new File("\\database\\database.json"));
         for (Keyword k: kw) {
             keywords.put(k.getWord(), k);
         }
