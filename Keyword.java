@@ -12,23 +12,34 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-enum Classification { BULLY, THREAT, DISCRIMINATION, HARASSMENT}
+enum Classification { THREAT, DISCRIMINATION, HARASSMENT}
+
+
 /** 
  * @author Matthew
+ *   
+ * Keyword.java
  * 
- *
+ * The keyword class contains a severity level(1-5), a classification (enums) for the keyword,
+ * and the keyword itself, also known as offphrase or offensive phrase.
+ * 
+ * The keyword class can read and write to the local keyword database.
+ * Through the methods createKeywordList and saveKeywordList.
+ * 
+ * New entries are made through the createEntry method.
+ * 
+ * This class uses the gson library to handle json the json file.
  */
 public class Keyword {
-	public Keyword(String offphrase) {
+	private Keyword(String offphrase) {
 		this.offphrase = offphrase;
+		this.setSeverity(1);
 	}
 	
 	public String getWord() {
 		return offphrase;
 	}
 	
-	/*
-	 */
 	public Classification getClassification() {
 		return classification;
 	}
