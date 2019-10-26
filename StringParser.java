@@ -23,6 +23,7 @@ public class StringParser {
             s = new Scanner(fr);
         } catch (FileNotFoundException f) {
             System.out.println("File not found: " + in);
+            System.exit(1);
         }
         ArrayList<Keyword> kw = Keyword.createKeywordList(new File("\\database\\database.json"));
         for (Keyword k: kw) {
